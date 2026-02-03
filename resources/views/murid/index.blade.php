@@ -1,0 +1,249 @@
+@extends('layouts.backend.app')
+
+@section('title')
+    Dashboard
+@endsection
+
+@section('content')
+<div class="content-wrapper container-xxl p-0">
+    <div class="content-body">
+        <div class="row">
+            <div class="col-12">
+                {{-- PERUBAHAN 1: Hapus class 'bg-primary bg-darken-1' dan tambahkan style gradient hijau --}}
+                <div class="card card-congratulations" style="background: linear-gradient(118deg, #28c76f, #52c234);">
+                    <div class="card-body text-center">
+                        <img src="{{asset('Assets/Backend/images/pages/decore-left.png')}}" class="congratulations-img-left" alt="card-img-left" />
+                        <img src="{{asset('Assets/Backend/images/pages/decore-right.png')}}" class="congratulations-img-right" alt="card-img-right" />
+                        
+                        {{-- PERUBAHAN 2: Ubah bg-warning jadi bg-white, dan text-primary jadi text-success --}}
+                        <div class="avatar avatar-xl bg-white shadow-lg">
+                            <div class="avatar-content">
+                                <i data-feather="award" class="font-large-1 text-success"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="text-center">
+                            <h1 class="mb-1 text-white text-uppercase font-weight-bold">Welcome {{Auth::user()->name}}</h1>
+                            <p class="card-text m-auto w-75 text-white">
+                                 Semoga harimu menyenangkan! 😊
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                {{-- Event 1 --}}
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card card-developer-meetup">
+                        <div class="meetup-img-wrapper rounded-top text-center">
+                            <img src="{{asset('assets/frontend/img/foto_logo.png')}}" alt="Meeting Pic" height="170" />
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-2">
+                                <span class="badge badge-primary">Event 1</span>
+                            </div>
+                            <div class="meetup-header d-flex align-items-center">
+                                <div class="meetup-day">
+                                    <h6 class="mb-0">
+                                        @if($event)
+                                            {{Carbon\Carbon::parse($event->acara)->format('l')}}
+                                        @else
+                                            -
+                                        @endif
+                                    </h6>
+                                    <h3 class="mb-0">
+                                        @if($event)
+                                            {{Carbon\Carbon::parse($event->acara)->format('d')}}
+                                        @else
+                                            -
+                                        @endif
+                                    </h3>
+                                </div>
+                                <div class="my-auto">
+                                    <h4 class="card-title mb-25">{{$event->title ?? 'Belum Ada Event'}}</h4>
+                                    <p class="card-text mb-0">{{$event->desc ?? 'Belum ada deskripsi'}}</p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="avatar bg-light-primary rounded mr-1">
+                                    <div class="avatar-content">
+                                        <i data-feather="calendar" class="avatar-icon font-medium-3"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="mb-0">
+                                        @if($event)
+                                            {{Carbon\Carbon::parse($event->acara)->format('d F, Y')}}
+                                        @else
+                                            -
+                                        @endif
+                                    </h6>
+                                    <small>
+                                        @if($event)
+                                            {{Carbon\Carbon::parse($event->acara)->format('H:i')}}
+                                        @else
+                                            -
+                                        @endif
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="avatar bg-light-primary rounded mr-1">
+                                    <div class="avatar-content">
+                                        <i data-feather="map-pin" class="avatar-icon font-medium-3"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="mb-0">{{$event->lokasi ?? '-'}}</h6>
+                                    <small>kec. sempu Desa Temuasri</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Event 2 --}}
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card card-developer-meetup">
+                        <div class="meetup-img-wrapper rounded-top text-center">
+                            <img src="{{asset('assets/frontend/img/foto_logo.png')}}" alt="Meeting Pic" height="170" />
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-2">
+                                <span class="badge badge-success">Event 2</span>
+                            </div>
+                            <div class="meetup-header d-flex align-items-center">
+                                <div class="meetup-day">
+                                    <h6 class="mb-0">
+                                        @if($event2)
+                                            {{Carbon\Carbon::parse($event2->acara)->format('l')}}
+                                        @else
+                                            -
+                                        @endif
+                                    </h6>
+                                    <h3 class="mb-0">
+                                        @if($event2)
+                                            {{Carbon\Carbon::parse($event2->acara)->format('d')}}
+                                        @else
+                                            -
+                                        @endif
+                                    </h3>
+                                </div>
+                                <div class="my-auto">
+                                    <h4 class="card-title mb-25">{{$event2->title ?? 'Belum Ada Event'}}</h4>
+                                    <p class="card-text mb-0">{{$event2->desc ?? 'Belum ada deskripsi'}}</p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="avatar bg-light-success rounded mr-1">
+                                    <div class="avatar-content">
+                                        <i data-feather="calendar" class="avatar-icon font-medium-3"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="mb-0">
+                                        @if($event2)
+                                            {{Carbon\Carbon::parse($event2->acara)->format('d F, Y')}}
+                                        @else
+                                            -
+                                        @endif
+                                    </h6>
+                                    <small>
+                                        @if($event2)
+                                            {{Carbon\Carbon::parse($event2->acara)->format('H:i')}}
+                                        @else
+                                            -
+                                        @endif
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="avatar bg-light-success rounded mr-1">
+                                    <div class="avatar-content">
+                                        <i data-feather="map-pin" class="avatar-icon font-medium-3"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="mb-0">{{$event2->lokasi ?? '-'}}</h6>
+                                    <small>kec. sempu Desa Temuasri</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Event 3 --}}
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="card card-developer-meetup">
+                        <div class="meetup-img-wrapper rounded-top text-center">
+                            <img src="{{asset('assets/frontend/img/foto_logo.png')}}" alt="Meeting Pic" height="170" />
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-2">
+                                <span class="badge badge-warning">Event 3</span>
+                            </div>
+                            <div class="meetup-header d-flex align-items-center">
+                                <div class="meetup-day">
+                                    <h6 class="mb-0">
+                                        @if($event3)
+                                            {{Carbon\Carbon::parse($event3->acara)->format('l')}}
+                                        @else
+                                            -
+                                        @endif
+                                    </h6>
+                                    <h3 class="mb-0">
+                                        @if($event3)
+                                            {{Carbon\Carbon::parse($event3->acara)->format('d')}}
+                                        @else
+                                            -
+                                        @endif
+                                    </h3>
+                                </div>
+                                <div class="my-auto">
+                                    <h4 class="card-title mb-25">{{$event3->title ?? 'Belum Ada Event'}}</h4>
+                                    <p class="card-text mb-0">{{$event3->desc ?? 'Belum ada deskripsi'}}</p>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="avatar bg-light-warning rounded mr-1">
+                                    <div class="avatar-content">
+                                        <i data-feather="calendar" class="avatar-icon font-medium-3"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="mb-0">
+                                        @if($event3)
+                                            {{Carbon\Carbon::parse($event3->acara)->format('d F, Y')}}
+                                        @else
+                                            -
+                                        @endif
+                                    </h6>
+                                    <small>
+                                        @if($event3)
+                                            {{Carbon\Carbon::parse($event3->acara)->format('H:i')}}
+                                        @else
+                                            -
+                                        @endif
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="media">
+                                <div class="avatar bg-light-warning rounded mr-1">
+                                    <div class="avatar-content">
+                                        <i data-feather="map-pin" class="avatar-icon font-medium-3"></i>
+                                    </div>
+                                </div>
+                                <div class="media-body">
+                                    <h6 class="mb-0">{{$event3->lokasi ?? '-'}}</h6>
+                                    <small>kec. sempu Desa Temuasri</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
